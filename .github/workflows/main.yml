@@ -33,16 +33,13 @@ jobs:
           echo "::add-mask::${IDTOKEN}"
           echo "idToken=${IDTOKEN}" >> $GITHUB_OUTPUT
 
-      - name: Debug OIDC Token Claims
-        run: |
-          echo $ \
-          | cut -d '.' -f2 | base64 -d | jq
-
 
       - name: Check Permissions in Kubernetes
         run: |
           kubectl \
-            --token="${{ steps.create-oidc-token.outputs.idToken }}" \
+            --token=$ \
             --server="https://138.2.188.210:6443" \
             --insecure-skip-tls-verify \
             auth can-i --list
+  
+
