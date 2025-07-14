@@ -37,3 +37,11 @@ jobs:
             --server="https://138.2.188.210:6443" \
             --insecure-skip-tls-verify \
             auth can-i --list
+            
+      - name: Create namespace
+        run: |
+          kubectl \
+            --token="${{ steps.create-oidc-token.outputs.idToken }}" \
+            --server="https://138.2.188.210:6443" \
+            --insecure-skip-tls-verify \
+            create namespace test
