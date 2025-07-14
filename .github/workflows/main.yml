@@ -1,4 +1,4 @@
-name: oke-oidc
+name: OKE-OIDC
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -17,9 +17,6 @@ permissions:
 jobs:
   oke-oidc:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-
     steps:
       - name: Create OIDC Token
         id: create-oidc-token
@@ -33,11 +30,10 @@ jobs:
           echo "::add-mask::${IDTOKEN}"
           echo "idToken=${IDTOKEN}" >> $GITHUB_OUTPUT
 
-
       - name: Check Permissions in Kubernetes
         run: |
           kubectl \
-            --token=$ \
-            --server="https://138.2.188.210:6443" \
-            --insecure-skip-tls-verify \
-            auth can-i --list
+          --token=$ \
+          --server="https://138.2.188.210:6443" \
+          --insecure-skip-tls-verify \
+          auth can-i --list
