@@ -34,6 +34,6 @@ jobs:
         run: |
           kubectl \
           --token=$ \
-          --server="https://152.70.177.173:6443" \
+          --server="138.2.188.210:6443" \
           --insecure-skip-tls-verify \
           auth can-i --list
