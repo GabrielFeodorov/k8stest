@@ -35,7 +35,7 @@ jobs:
 
       - name: Debug OIDC Token Claims
         run: |
-          echo "${{ steps.create-oidc-token.outputs.idToken }}" \
+          echo $ \
           | cut -d '.' -f2 | base64 -d | jq
 
 
