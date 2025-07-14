@@ -17,6 +17,9 @@ permissions:
 jobs:
   oke-oidc:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
     steps:
       - name: Create OIDC Token
         id: create-oidc-token
@@ -33,7 +36,7 @@ jobs:
       - name: Check Permissions in Kubernetes
         run: |
           kubectl \
-          --token=$ \
-          --server="https://138.2.188.210:6443" \
-          --insecure-skip-tls-verify \
-          auth can-i --list
+            --token="${{ steps.create-oidc-token.outputs.idToken }}" \
+            --server="https://138.2.188.210:6443" \
+            --insecure-skip-tls-verify \
+            auth can-i --list
