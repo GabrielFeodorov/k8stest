@@ -38,10 +38,10 @@ jobs:
             --insecure-skip-tls-verify \
             auth can-i --list
 
-      # - name: Create namespace
-      #   run: |
-      #     kubectl \
-      #       --token="${{ steps.create-oidc-token.outputs.idToken }}" \
-      #       --server="${{ secrets.OKE_API_ENDPOINT }}" \
-      #       --insecure-skip-tls-verify \
-      #       create namespace test
+      - name: Create namespace
+        run: |
+          kubectl \
+            --token="${{ steps.create-oidc-token.outputs.idToken }}" \
+            --server="${{ secrets.OKE_API_ENDPOINT }}" \
+            --insecure-skip-tls-verify \
+            create namespace test
