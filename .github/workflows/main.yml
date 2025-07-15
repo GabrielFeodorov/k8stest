@@ -44,4 +44,4 @@ jobs:
             --token="${{ steps.create-oidc-token.outputs.idToken }}" \
             --server="${{ secrets.OKE_API_ENDPOINT }}" \
             --insecure-skip-tls-verify \
-            delete namespace test
+            create namespace test
